@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { EmptyState } from "@/components/empty-state";
 import { FilterBar } from "@/components/filter-bar";
@@ -16,6 +16,7 @@ import {
   orderedItems,
   progressFor,
 } from "@/lib/mcu";
+import { playWatchToggleSound, preloadWatchlistSounds } from "@/lib/sounds";
 import { useWatchedIds, useWatchlistStore } from "@/store/watchlist-store";
 import type { WatchlistFilters } from "@/types/mcu";
 
@@ -25,6 +26,18 @@ export function MCUList() {
 
   const watchedIds = useWatchedIds();
   const toggleWatched = useWatchlistStore((state) => state.toggleWatched);
+
+  useEffect(preloadWatchlistSounds, []);
+
+  // One handler for both the card checkbox and the detail dialog, so the
+  // stamp always sounds the same wherever it is applied.
+  const handleToggle = useCallback(
+    (id: string) => {
+      playWatchToggleSound(!watchedIds.has(id));
+      toggleWatched(id);
+    },
+    [watchedIds, toggleWatched],
+  );
 
   const visible = useMemo(
     () => applyFilters(orderedItems(filters.order), filters, watchedIds),
@@ -107,7 +120,7 @@ export function MCUList() {
               item={item}
               order={filters.order}
               watched={watchedIds.has(item.id)}
-              onToggle={toggleWatched}
+              onToggle={handleToggle}
               onOpen={setOpenId}
             />
           ))}
@@ -121,7 +134,7 @@ export function MCUList() {
         onOpenChange={(open) => {
           if (!open) setOpenId(null);
         }}
-        onToggle={toggleWatched}
+        onToggle={handleToggle}
       />
     </section>
   );

@@ -29,7 +29,9 @@ export function HalftoneBar({
         size === "lg"
           ? "[&_[data-slot=progress-track]]:h-6"
           : "[&_[data-slot=progress-track]]:h-3",
-        "[&_[data-slot=progress-track]]:w-full [&_[data-slot=progress-track]]:rounded-none [&_[data-slot=progress-track]]:border [&_[data-slot=progress-track]]:border-gutter [&_[data-slot=progress-track]]:bg-panel",
+        // overflow-hidden on both axes: the base track only sets overflow-x,
+        // which leaves overflow-y computing to auto and paints a scrollbar.
+        "[&_[data-slot=progress-track]]:w-full [&_[data-slot=progress-track]]:overflow-hidden [&_[data-slot=progress-track]]:rounded-none [&_[data-slot=progress-track]]:border [&_[data-slot=progress-track]]:border-gutter [&_[data-slot=progress-track]]:bg-panel",
         "[&_[data-slot=progress-indicator]]:benday [&_[data-slot=progress-indicator]]:bg-plate-red [&_[data-slot=progress-indicator]]:transition-[width] [&_[data-slot=progress-indicator]]:duration-500 [&_[data-slot=progress-indicator]]:ease-[cubic-bezier(0.16,1,0.3,1)]",
         className,
       )}
