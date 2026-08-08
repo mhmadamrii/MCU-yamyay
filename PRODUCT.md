@@ -12,7 +12,7 @@ Next.js 16.3.0 (App Router) + TypeScript + Tailwind CSS v4 + ESLint, scaffolded 
 
 ## Users
 
-Primary user: someone preparing to watch **Avengers: Doomsday** who has either never followed the MCU or fell off years ago. They arrive knowing the franchise is large and not knowing where to start or what is skippable. Their job is to decide *what to watch, in what order*, and to keep track of that decision across many sittings over weeks — on a phone during commutes, on a laptop at home.
+Primary user: someone preparing to watch **Avengers: Doomsday** who has either never followed the MCU or fell off years ago. They arrive knowing the franchise is large and not knowing where to start or what is skippable. Their job is to decide _what to watch, in what order_, and to keep track of that decision across many sittings over weeks — on a phone during commutes, on a laptop at home.
 
 Because of this, "what is actually essential" is the product's leading answer, not a secondary filter. The complete franchise list is available but is not the default frame of the experience.
 
@@ -26,7 +26,7 @@ Success is a user who can answer, in one glance, "how far am I from being ready 
 
 Two things distinguish it from a generic checklist:
 
-1. **A curated essential path.** Titles carry an `essentialForDoomsday` flag, and the product explicitly rejects the premise that all MCU content is required. The user can switch between *All MCU* and *Essential for Doomsday* and the progress math follows the active view.
+1. **A curated essential path.** Titles carry an `essentialForDoomsday` flag, and the product explicitly rejects the premise that all MCU content is required. The user can switch between _All MCU_ and _Essential for Doomsday_ and the progress math follows the active view.
 2. **Order is a user choice, not an editorial one.** Timeline (story) order is the default; release order is one toggle away. The underlying data is never mutated — ordering and filtering happen in the UI layer.
 
 ## Operating Context
@@ -42,7 +42,7 @@ Confirmed functionality:
 
 - Ordered list of MCU movies and series, each with: sequence number, title, year, release date, type (`movie` | `series`), phase, synopsis, optional duration, optional episode count, optional poster, watched state.
 - Watched / unwatched toggle per title; persisted to localStorage under the key `mcu-watchlist` via Zustand `persist`.
-- Progress dashboard: watched count, remaining count, percentage, progress bar — recalculated against the currently *displayed* set, not always the full catalogue.
+- Progress dashboard: watched count, remaining count, percentage, progress bar — recalculated against the currently _displayed_ set, not always the full catalogue.
 - A dedicated "Road to Avengers: Doomsday" progress view over the essential subset only.
 - Search (title + synopsis, client-side), filters (status, type, phase, importance), order toggle (Timeline | Release, default Timeline).
 - Detail view per title (modal or expandable card) with the full record and a mark-as-watched action.
@@ -58,7 +58,7 @@ Technical constraints:
 - Data lives in `src/data/mcu.ts` with types in `src/types/mcu.ts`; the store in `src/store/watchlist-store.ts`; components split under `src/components/` rather than piled into `page.tsx`.
 - `npm run build` must succeed; lint and typecheck must be clean.
 
-Terminology: *Phase* (Phase One … Phase Six) is Marvel's own release-grouping and is used as a filter facet. *Timeline order* means in-story chronology; *Release order* means real-world premiere date. *Essential* means required to follow Doomsday, as curated — not "good" or "canonical."
+Terminology: _Phase_ (Phase One … Phase Six) is Marvel's own release-grouping and is used as a filter facet. _Timeline order_ means in-story chronology; _Release order_ means real-world premiere date. _Essential_ means required to follow Doomsday, as curated — not "good" or "canonical."
 
 ## Brand Commitments
 

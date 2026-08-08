@@ -56,7 +56,8 @@ export const useWatchlistStore = create<WatchlistState>()(
  */
 function subscribeToHydration(onStoreChange: () => void) {
   const unsubHydrate = useWatchlistStore.persist.onHydrate(onStoreChange);
-  const unsubFinish = useWatchlistStore.persist.onFinishHydration(onStoreChange);
+  const unsubFinish =
+    useWatchlistStore.persist.onFinishHydration(onStoreChange);
   return () => {
     unsubHydrate();
     unsubFinish();

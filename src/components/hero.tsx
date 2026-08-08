@@ -82,6 +82,7 @@ export function Hero() {
         <div className="mt-8">
           <Button
             render={<a href="#watchlist" />}
+            nativeButton={false}
             className="credit-type h-12 rounded-none px-6 text-[0.75rem]"
           >
             Start watching

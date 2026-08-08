@@ -22,9 +22,9 @@ export default function Home() {
           </p>
           <p className="max-w-[68ch] text-xs leading-relaxed text-paper-dim">
             An unofficial fan-made checklist. Not affiliated with or endorsed by
-            Marvel Studios or The Walt Disney Company. Progress is stored only in
-            this browser — no account, no sync, no tracking. Release dates for
-            unreleased titles are studio announcements and can change.
+            Marvel Studios or The Walt Disney Company. Progress is stored only
+            in this browser — no account, no sync, no tracking. Release dates
+            for unreleased titles are studio announcements and can change.
           </p>
         </div>
       </footer>

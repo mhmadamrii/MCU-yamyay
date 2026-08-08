@@ -1,5 +1,21 @@
-node_modules
+# Build output
 .next
+out
+build
+
+# Dependencies
+node_modules
+
+# VCS and tooling
 .git
 .claude
-*.md
+.impeccable
+
+# Lockfiles
+package-lock.json
+
+# Generated
+next-env.d.ts
+
+# The original brief — kept byte-identical
+requirements.md

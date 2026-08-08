@@ -64,9 +64,9 @@ export function MCUList() {
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-gutter pt-4">
           <p className="credit-type shrink-0 text-[0.65rem] text-paper-dim">
-            Showing{" "}
-            <span className="text-paper">{visible.length}</span> of{" "}
-            {mcuItems.length} · <span className="text-plate-red-bright">
+            Showing <span className="text-paper">{visible.length}</span> of{" "}
+            {mcuItems.length} ·{" "}
+            <span className="text-plate-red-bright">
               {progress.watched} watched
             </span>{" "}
             in this view

@@ -32,7 +32,9 @@ export function CoverArt({
 }: CoverArtProps) {
   if (item.poster) {
     return (
-      <div className={cn("relative overflow-hidden bg-panel-raised", className)}>
+      <div
+        className={cn("relative overflow-hidden bg-panel-raised", className)}
+      >
         <Image
           src={item.poster}
           alt=""

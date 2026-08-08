@@ -15,7 +15,11 @@ import {
 } from "@/components/ui/dialog";
 import { useWatchlistStore } from "@/store/watchlist-store";
 
-export function ResetProgressDialog({ watchedCount }: { watchedCount: number }) {
+export function ResetProgressDialog({
+  watchedCount,
+}: {
+  watchedCount: number;
+}) {
   const [open, setOpen] = useState(false);
   const resetProgress = useWatchlistStore((state) => state.resetProgress);
 

@@ -23,16 +23,50 @@ const barlowCondensed = Barlow_Condensed({
   display: "swap",
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_ENV === "production" &&
+  process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "https://somethinglist.vercel.app");
+
 export const metadata: Metadata = {
   title: "MCU Watchlist — Marvel Cinematic Universe Checklist",
   description:
     "Track your Marvel Cinematic Universe watchlist, mark movies and series as watched, and follow your journey toward Avengers: Doomsday.",
   applicationName: "MCU Watchlist",
+  // Social scrapers only accept absolute URLs. Vercel supplies the deploy host at
+  // build time; SITE_URL overrides it, and the production domain is the fallback.
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
   openGraph: {
     title: "MCU Watchlist — Marvel Cinematic Universe Checklist",
     description:
       "Track your Marvel Cinematic Universe watchlist, mark movies and series as watched, and follow your journey toward Avengers: Doomsday.",
+    url: "/",
+    siteName: "MCU Watchlist",
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        // JPEG rather than the source PNG: WhatsApp drops previews over ~300KB,
+        // and the full-size PNG is 1.5MB. Source kept at /opengraph-image.png.
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 633,
+        type: "image/jpeg",
+        alt: "MCU Watchlist — track your road to Avengers: Doomsday.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MCU Watchlist — Marvel Cinematic Universe Checklist",
+    description:
+      "Track your Marvel Cinematic Universe watchlist, mark movies and series as watched, and follow your journey toward Avengers: Doomsday.",
+    images: ["/opengraph-image.jpg"],
   },
 };
 
@@ -61,10 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${anton.variable} ${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <span
-          hidden
-          dangerouslySetInnerHTML={{ __html: DIRECTION_CONTRACT }}
-        />
+        <span hidden dangerouslySetInnerHTML={{ __html: DIRECTION_CONTRACT }} />
         {children}
       </body>
     </html>
